@@ -4,6 +4,7 @@ import com.axellience.vuegwt.core.client.component.IsVueComponent;
 import com.axellience.vuegwt.core.client.vue.VueJsConstructor;
 import elemental2.core.Function;
 import elemental2.core.JsObject;
+import javaemul.internal.annotations.DoNotAutobox;
 import jsinterop.annotations.JsFunction;
 import jsinterop.base.JsPropertyMap;
 
@@ -89,7 +90,7 @@ public class VueGWTTools {
    * @param expressionValue The value of the expression from the template
    * @return Null if passed null, the value to String otherwise
    */
-  public static String templateExpressionToString(Object expressionValue) {
+  public static String templateExpressionToString(@DoNotAutobox Object expressionValue) {
     return expressionValue == null ? null : expressionValue + "";
   }
 

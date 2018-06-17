@@ -1,6 +1,7 @@
 package com.axellience.vuegwt.core.client.component.options;
 
 import static elemental2.core.Global.JSON;
+import static jsinterop.base.Js.cast;
 
 import com.axellience.vuegwt.core.client.component.IsVueComponent;
 import com.axellience.vuegwt.core.client.component.options.computed.ComputedKind;
@@ -19,7 +20,6 @@ import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
-import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 
 /**
@@ -33,7 +33,7 @@ import jsinterop.base.JsPropertyMap;
  *
  * @author Adrien Baron
  */
-@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "VueOptions")
 public class VueComponentOptions<T extends IsVueComponent> implements JsPropertyMap {
 
   private JsPropertyMap<Object> componentExportedTypePrototype;
@@ -77,7 +77,7 @@ public class VueComponentOptions<T extends IsVueComponent> implements JsProperty
   public final void initRenderFunctions(Function renderFunctionString,
       Function[] staticRenderFnsStrings) {
     this.setRender(renderFunctionString);
-    this.setStaticRenderFns(Js.cast(staticRenderFnsStrings));
+    this.setStaticRenderFns(cast(staticRenderFnsStrings));
   }
 
   /**
@@ -272,24 +272,18 @@ public class VueComponentOptions<T extends IsVueComponent> implements JsProperty
 
     ---------------------------------------------*/
   @JsProperty
-  private Object data;
-  @JsProperty
   private JsPropertyMap props;
 
   @JsProperty
   private JsPropertyMap propsData;
   @JsProperty
   private JsPropertyMap<ComputedOptions> computed;
-  @JsProperty
-  private JsPropertyMap<Function> methods;
 
   @JsProperty
   private JsPropertyMap watch;
   @JsProperty
   private Object el;
 
-  @JsProperty
-  private String template;
   @JsProperty
   private JsPropertyMap<VueDirectiveOptions> directives;
 
@@ -311,12 +305,12 @@ public class VueComponentOptions<T extends IsVueComponent> implements JsProperty
 
   @JsOverlay
   public final Object getData() {
-    return data;
+    return get("data");
   }
 
   @JsOverlay
   public final VueComponentOptions setData(Object data) {
-    this.data = data;
+    set("data", data);
     return this;
   }
 
@@ -384,22 +378,22 @@ public class VueComponentOptions<T extends IsVueComponent> implements JsProperty
 
   @JsOverlay
   public final JsPropertyMap<Function> getMethods() {
-    return methods;
+    return cast(get("methods"));
   }
 
   @JsOverlay
   public final VueComponentOptions setMethods(JsPropertyMap methods) {
-    this.methods = methods;
+    set("methods", methods);
     return this;
   }
 
   @JsOverlay
   public final VueComponentOptions addMethod(String name, Function method) {
-    if (this.methods == null) {
-      this.methods = (JsPropertyMap<Function>) new JsObject();
+    if (getMethods() == null) {
+      set("methods", JsPropertyMap.of());
     }
 
-    this.methods.set(name, method);
+    getMethods().set(name, method);
     return this;
   }
 
@@ -436,12 +430,12 @@ public class VueComponentOptions<T extends IsVueComponent> implements JsProperty
 
   @JsOverlay
   public final String getTemplate() {
-    return template;
+    return cast(get("template"));
   }
 
   @JsOverlay
   public final VueComponentOptions setTemplate(String template) {
-    this.template = template;
+    set("template", template);
     return this;
   }
 

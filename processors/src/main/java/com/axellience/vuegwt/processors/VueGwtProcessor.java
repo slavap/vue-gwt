@@ -23,9 +23,9 @@ import javax.lang.model.util.ElementFilter;
 
 @AutoService(Processor.class)
 @SupportedAnnotationTypes({
-    "com.axellience.vuegwt.core.annotations.component.Component",
-    "com.axellience.vuegwt.core.annotations.component.JsComponent",
-    "com.axellience.vuegwt.core.annotations.directive.Directive"
+    //"com.axellience.vuegwt.core.annotations.component.Component",
+    //"com.axellience.vuegwt.core.annotations.component.JsComponent",
+    //"com.axellience.vuegwt.core.annotations.directive.Directive"
 })
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class VueGwtProcessor extends AbstractProcessor {

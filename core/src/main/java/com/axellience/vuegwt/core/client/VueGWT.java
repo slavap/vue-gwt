@@ -35,11 +35,7 @@ public class VueGWT {
    */
   @JsIgnore
   public static void init() {
-    if (isDevMode()) {
-      VueLibDevInjector.ensureInjected();
-    } else {
-      VueLibInjector.ensureInjected();
-    }
+    VueLibDevInjector.ensureInjected();
 
     // Init VueGWT
     VueGWT.initWithoutVueLib();
